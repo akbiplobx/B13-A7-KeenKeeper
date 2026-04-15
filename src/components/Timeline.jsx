@@ -2,9 +2,10 @@ import { useState } from "react";
 
 const Timeline = ({ events }) => {
   
+  // Track selected category filter
   const [filter, setFilter] = useState("All");
 
-
+  // Logic to narrow down events
   const filteredEvents = filter === "All" 
     ? events 
     : events.filter(event => event.type === filter);
@@ -13,7 +14,7 @@ const Timeline = ({ events }) => {
     <div className="max-w-[900px] mx-auto p-6 md:p-12 font-['Inter']">
       <h1 className="text-[40px] font-[800] text-[#1a2e35] mb-8 font-['Manrope']">Timeline</h1>
       
-      
+      {/* Dropdown for type selection */}
       <div className="mb-8">
         <select 
           value={filter}
@@ -29,16 +30,19 @@ const Timeline = ({ events }) => {
       </div>
 
       <div className="space-y-4">
+        {/* Handle empty filter results */}
         {filteredEvents.length === 0 ? (
           <div className="bg-white p-10 rounded-[20px] border border-dashed border-gray-200 text-center text-gray-400 font-medium">
             No {filter !== "All" ? filter : ""} interactions found.
           </div>
         ) : (
+          /* Map through display items */
           filteredEvents.map((event) => (
             <div 
               key={event.id} 
               className="bg-white p-6 rounded-[20px] border border-gray-50 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-6 transition-transform hover:scale-[1.01]"
             >
+              {/* Event icon display */}
               <div className="text-2xl bg-[#f8fafc] p-4 rounded-full w-14 h-14 flex items-center justify-center border border-gray-50">
                 {event.icon}
               </div>

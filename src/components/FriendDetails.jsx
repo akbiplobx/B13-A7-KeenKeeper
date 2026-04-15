@@ -2,16 +2,18 @@ import { useParams } from 'react-router-dom';
 import { Phone, MessageSquare, Video, Bell, Archive, Trash2 } from 'lucide-react';
 
 const FriendDetails = ({ friends, onAction }) => {
+  // Get friend ID from URL
   const { id } = useParams();
   const friend = friends.find(f => f.id == id);
 
+  // Handle missing friend data
   if (!friend) return <div className="p-20 text-center font-inter">Friend not found!</div>;
 
   return (
     <div className="max-w-[1100px] mx-auto p-4 md:p-8 bg-[#f8fafc] font-['Inter']">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        
+        {/* Profile Sidebar */}
         <div className="lg:col-span-4 space-y-4">
           <div className="bg-white p-6 rounded-[20px] shadow-sm border border-gray-100 flex flex-col items-center text-center">
             <img 
@@ -27,6 +29,7 @@ const FriendDetails = ({ friends, onAction }) => {
             <p className="text-[#64748b] italic text-[14px] mb-1">"Former colleague, great mentor"</p>
           </div>
 
+          {/* Account settings buttons */}
           <div className="grid grid-cols-1 gap-2">
             <button className="w-full bg-white py-3 rounded-xl border border-gray-100 shadow-sm flex items-center justify-center gap-3 text-[#1a2e35] font-[700] text-[14px] hover:bg-gray-50 transition-all">
               <Bell size={16} /> Snooze 2 Weeks
@@ -37,7 +40,7 @@ const FriendDetails = ({ friends, onAction }) => {
           </div>
         </div>
 
-       
+        {/* Stats and Interactions */}
         <div className="lg:col-span-8 space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
             <div className="bg-white p-6 rounded-[20px] border border-gray-100 shadow-sm">
@@ -54,6 +57,7 @@ const FriendDetails = ({ friends, onAction }) => {
             </div>
           </div>
 
+          {/* Action buttons section */}
           <div className="bg-white p-6 rounded-[20px] border border-gray-100 shadow-sm">
             <h3 className="text-[#1a2e35] text-[16px] font-[800] mb-6 font-['Manrope']">Quick Check-In</h3>
             <div className="grid grid-cols-3 gap-4">

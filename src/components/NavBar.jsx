@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { Home, Clock, BarChart3 } from "lucide-react"; 
+import { Home, Clock, LineChart } from "lucide-react"; 
 
 const NavBar = () => {
  
+  // Dynamic styles for active links
   const navStyle = ({ isActive }) => 
     `flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all ${
       isActive 
@@ -11,9 +12,16 @@ const NavBar = () => {
     }`;
 
   return (
+    // Main navigation bar container
     <nav className="flex items-center justify-between px-10 py-4 bg-white border-b border-gray-100 shadow-sm">
-      <div className="text-2xl font-black text-[#1a4a3e]">KeenKeeper</div>
       
+      {/* Brand logo section */}
+      <div className="text-2xl font-bold tracking-tight">
+        <span className="text-[#1a2e35]">Keen</span>
+        <span className="text-[#2d4f3e]">Keeper</span>
+      </div>
+      
+      {/* Navigation menu links */}
       <div className="flex gap-4">
         <NavLink to="/" className={navStyle}>
           <Home size={20} />
@@ -26,7 +34,7 @@ const NavBar = () => {
         </NavLink>
 
         <NavLink to="/stats" className={navStyle}>
-          <BarChart3 size={20} />
+          <LineChart size={20} />
           <span>Stats</span>
         </NavLink>
       </div>
@@ -34,4 +42,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar; 
+export default NavBar;
