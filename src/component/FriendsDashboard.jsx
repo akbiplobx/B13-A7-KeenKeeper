@@ -1,46 +1,46 @@
 const FriendsDashboard = ({ friends }) => {
-  // for avoid erorr
+
   if (!friends || friends.length === 0) return null;
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-8 text-gray-800">Your Friends</h2>
+    <div className="max-w-[1400px] mx-auto p-12 bg-[#f8fafc]">
+      <h2 className="text-2xl font-bold mb-10 text-[#1a2e35]">Your Friends</h2>
       
-      {/* grid lauout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+     
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {friends.map((friend) => (
           <div 
             key={friend.id} 
-            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow cursor-pointer"
+            className="bg-white rounded-[25px] p-8 flex flex-col items-center text-center transition-all cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] border border-gray-50"
           >
-            {/* Profile pic */}
-            <img 
-              src={friend.picture} 
-              alt={friend.name} 
-              className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-gray-50"
-              onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} // ছবি লোড না হলে ব্যাকআপ
-            />
-
-            <h3 className="text-lg font-bold text-gray-900">{friend.name}</h3>
-            <p className="text-sm text-gray-500 mb-3">{friend.days_since_contact}d ago</p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap justify-center gap-2 mb-4">
-              {friend.tags.map((tag, index) => (
-                <span 
-                  key={index} 
-                  className="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded-full uppercase"
-                >
-                  {tag}
-                </span>
-              ))}
+        
+            <div className="mb-6">
+              <img 
+                src={friend.picture} 
+                alt={friend.name} 
+                className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-sm"
+                onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} 
+              />
             </div>
 
-            {/* status */}
-            <div className={`mt-auto px-6 py-1.5 rounded-full text-white text-[10px] font-bold uppercase tracking-wider ${
-              friend.status === 'overdue' ? 'bg-red-500' : 
-              friend.status === 'almost due' ? 'bg-orange-400' : 
-              'bg-emerald-600'
+         
+            <h3 className="text-xl font-bold text-[#1a2e35] mb-1">{friend.name}</h3>
+            <p className="text-sm text-gray-400 mb-5">{friend.days_since_contact}d ago</p>
+
+       
+            <div className="mb-6 h-8 flex items-center justify-center">
+              {friend.tags.length > 0 && (
+                <span className="px-5 py-1.5 bg-[#dcfce7] text-[#166534] text-[11px] font-bold rounded-full uppercase tracking-widest">
+                  {friend.tags.includes("WORK") ? "WORK" : friend.tags[0]}
+                </span>
+              )}
+            </div>
+
+          
+            <div className={`w-full max-w-[150px] py-2.5 rounded-full text-white text-[11px] font-extrabold uppercase tracking-widest shadow-md transition-colors ${
+              friend.status === 'overdue' ? 'bg-[#ff3b3b]' : 
+              friend.status === 'almost due' ? 'bg-[#f0ad4e]' : 
+              'bg-[#1a4a3e]'
             }`}>
               {friend.status.replace('-', ' ')}
             </div>
