@@ -2,6 +2,9 @@
 
 KeenKeeper is a tiny React application that solves a common problem in everyone’s life – failing to maintain contact with friends who are actually important to us. This application is the very own shelf for our most precious relationships; here we can track those friends whom we talk to and those whom we neglect.
 
+Live Demo
+https://b13-a7-keen-keeper-ak.vercel.app/
+
 Features
 
 -Relationship Dashboard – Overview of my friendships at a glance: how many friends I have, how many of them require attention from me and how many interactions took place last month.
