@@ -1,6 +1,15 @@
+import { useState, useEffect } from "react"; // Added hooks
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const FriendshipAnalytics = ({ events }) => {
+  // Loading state management
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate chart data processing time
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
   
   // Count frequency of each event type
   const dataMap = events.reduce((acc, event) => {
@@ -16,6 +25,15 @@ const FriendshipAnalytics = ({ events }) => {
 
   // Define chart segment colors
   const COLORS = ['#8b5cf6', '#1a4a3e', '#34d399', '#facc15'];
+
+  // Loading spinner UI
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-40">
+        <div className="w-10 h-10 border-4 border-[#1a4a3e] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-[1000px] mx-auto p-10 font-['Inter']">

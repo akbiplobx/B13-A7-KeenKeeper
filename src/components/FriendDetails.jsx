@@ -1,10 +1,44 @@
+import { useState, useEffect } from 'react'; // Added hooks
 import { useParams } from 'react-router-dom';
-import { Phone, MessageSquare, Video, Bell, Archive, Trash2 } from 'lucide-react';
+import { Phone, MessageSquare, Video, Bell, Trash2 } from 'lucide-react';
+import toast from 'react-hot-toast'; // Added toast
 
 const FriendDetails = ({ friends, onAction }) => {
   // Get friend ID from URL
   const { id } = useParams();
+  
+  // Loading state management
+  const [isLoading, setIsLoading] = useState(true);
+  
   const friend = friends.find(f => f.id == id);
+
+  // Simulate loading effect when the component mounts or ID changes
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, [id]);
+
+  // Handle contact actions with toast feedback
+  const handleAction = (type, name) => {
+    onAction(type, name);
+    toast.success(`${type} with ${name} logged!`, {
+      style: {
+        borderRadius: '12px',
+        background: '#1a4a3e',
+        color: '#fff',
+      },
+    });
+  };
+
+  // Loading spinner UI
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-40">
+        <div className="w-10 h-10 border-4 border-[#1a4a3e] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   // Handle missing friend data
   if (!friend) return <div className="p-20 text-center font-inter">Friend not found!</div>;
@@ -61,15 +95,15 @@ const FriendDetails = ({ friends, onAction }) => {
           <div className="bg-white p-6 rounded-[20px] border border-gray-100 shadow-sm">
             <h3 className="text-[#1a2e35] text-[16px] font-[800] mb-6 font-['Manrope']">Quick Check-In</h3>
             <div className="grid grid-cols-3 gap-4">
-              <button onClick={() => onAction('Call', friend.name)} className="py-6 bg-[#f8fafc] rounded-[15px] flex flex-col items-center gap-3 hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-all">
+              <button onClick={() => handleAction('Call', friend.name)} className="py-6 bg-[#f8fafc] rounded-[15px] flex flex-col items-center gap-3 hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-all">
                 <Phone className="text-[#1a2e35]" size={22} />
                 <span className="text-[#1a2e35] font-[700] text-[13px]">Call</span>
               </button>
-              <button onClick={() => onAction('Text', friend.name)} className="py-6 bg-[#f8fafc] rounded-[15px] flex flex-col items-center gap-3 hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-all">
+              <button onClick={() => handleAction('Text', friend.name)} className="py-6 bg-[#f8fafc] rounded-[15px] flex flex-col items-center gap-3 hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-all">
                 <MessageSquare className="text-[#1a2e35]" size={22} />
                 <span className="text-[#1a2e35] font-[700] text-[13px]">Text</span>
               </button>
-              <button onClick={() => onAction('Video', friend.name)} className="py-6 bg-[#f8fafc] rounded-[15px] flex flex-col items-center gap-3 hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-all">
+              <button onClick={() => handleAction('Video', friend.name)} className="py-6 bg-[#f8fafc] rounded-[15px] flex flex-col items-center gap-3 hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-all">
                 <Video className="text-[#1a2e35]" size={22} />
                 <span className="text-[#1a2e35] font-[700] text-[13px]">Video</span>
               </button>

@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Timeline = ({ events }) => {
   
   // Track selected category filter
   const [filter, setFilter] = useState("All");
+  // Loading state management
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fake loading effect for smooth transition
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Logic to narrow down events
   const filteredEvents = filter === "All" 
     ? events 
     : events.filter(event => event.type === filter);
+
+  // Loading spinner UI
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-40">
+        <div className="w-10 h-10 border-4 border-[#1a4a3e] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-[900px] mx-auto p-6 md:p-12 font-['Inter']">
