@@ -13,7 +13,7 @@
   },
   {
     "id": 2,
-    "name": "Nusrat Jahan",
+    "name": "Mehedi Hasan",
     "picture": "/assets/Biplob 2.png",
     "email": "nusrat.j@workplace.com",
     "days_since_contact": 15,
@@ -37,7 +37,7 @@
   },
   {
     "id": 4,
-    "name": "Sajid Islam",
+    "name": "Rasheda Korim",
     "picture": "/assets/Biplob 4.png",
     "email": "sajid.islam@freelance.com",
     "days_since_contact": 25,
@@ -61,7 +61,7 @@
   },
   {
     "id": 6,
-    "name": "Rashedul Karim",
+    "name": "Sanjida Islam",
     "picture": "/assets/Biplob 6.png",
     "email": "rashed.k@sports.com",
     "days_since_contact": 9,
@@ -97,7 +97,7 @@
   },
   {
     "id": 9,
-    "name": "Lisa Nakamura",
+    "name": "James Wright",
     "picture": "/assets/Biplob 9.png",
     "email": "lisa.n@hobby.jp",
     "days_since_contact": 12,
@@ -109,7 +109,7 @@
   },
   {
     "id": 10,
-    "name": "James Wright",
+    "name": "Lisa Nakamura",
     "picture": "/assets/Biplob 10.png",
     "email": "james.w@outdoors.com",
     "days_since_contact": 45,
@@ -121,7 +121,7 @@
   },
   {
     "id": 11,
-    "name": "Mehedi Hasan",
+    "name": "Nusrat Jahan",
     "picture": "/assets/Biplob 11.png",
     "email": "mehedi.h@school.com",
     "days_since_contact": 1,
