@@ -1,52 +1,32 @@
-import { Link, NavLink } from 'react-router-dom';
-import { Home, Clock, LineChart } from 'lucide-react';
+import { NavLink } from "react-router-dom";
+import { Home, Clock, BarChart3 } from "lucide-react"; 
 
-const Navbar = () => {
+const NavBar = () => {
+ 
+  const navStyle = ({ isActive }) => 
+    `flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all ${
+      isActive 
+        ? "bg-[#1a4a3e] text-white"  
+        : "text-gray-500 hover:bg-gray-100" 
+    }`;
+
   return (
-    <nav className="flex items-center justify-between px-10 py-4 bg-white border-b border-gray-200 sticky top-0 z-50">
-    
-      <Link to="/" className="text-2xl font-bold tracking-tight">
-        <span className="text-[#1a2e35]">Keen</span>
-        <span className="text-[#2d4f3e]">Keeper</span>
-      </Link>
-
-      <div className="flex items-center gap-8">
-       
-        <NavLink 
-          to="/" 
-          className={({ isActive }) => 
-            `flex items-center gap-2 px-4 py-2 rounded-md font-semibold transition-all ${
-              isActive ? 'bg-[#2d4f3e] text-white' : 'text-[#5a6b7d] hover:text-[#2d4f3e]'
-            }`
-          }
-        >
+    <nav className="flex items-center justify-between px-10 py-4 bg-white border-b border-gray-100 shadow-sm">
+      <div className="text-2xl font-black text-[#1a4a3e]">KeenKeeper</div>
+      
+      <div className="flex gap-4">
+        <NavLink to="/" className={navStyle}>
           <Home size={20} />
           <span>Home</span>
         </NavLink>
 
-       
-        <NavLink 
-          to="/timeline" 
-          className={({ isActive }) => 
-            `flex items-center gap-2 font-medium transition-all ${
-              isActive ? 'text-[#2d4f3e] border-b-2 border-[#2d4f3e]' : 'text-[#5a6b7d]'
-            }`
-          }
-        >
+        <NavLink to="/timeline" className={navStyle}>
           <Clock size={20} />
           <span>Timeline</span>
         </NavLink>
 
-       
-        <NavLink 
-          to="/stats" 
-          className={({ isActive }) => 
-            `flex items-center gap-2 font-medium transition-all ${
-              isActive ? 'text-[#2d4f3e] border-b-2 border-[#2d4f3e]' : 'text-[#5a6b7d]'
-            }`
-          }
-        >
-          <LineChart size={20} />
+        <NavLink to="/stats" className={navStyle}>
+          <BarChart3 size={20} />
           <span>Stats</span>
         </NavLink>
       </div>
@@ -54,5 +34,4 @@ const Navbar = () => {
   );
 };
 
-
-export default Navbar;
+export default NavBar; 
